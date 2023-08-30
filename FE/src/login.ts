@@ -15,6 +15,9 @@ export default async function login(username: string, password: string) {
         });
         const data = await response.json(); 
         alert(data.message);
+        console.log(data);
+        document.cookie = `token: ${data.token} userId: ${data.user_id}`;
+        window.location.href = "http://localhost:8080/main.html";
     } catch (error) {
         console.log('Error', error);
         alert('DB error occurred'); 

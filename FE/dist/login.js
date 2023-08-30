@@ -24,6 +24,9 @@ export default function login(username, password) {
             });
             const data = yield response.json();
             alert(data.message);
+            console.log(data);
+            document.cookie = `token: ${data.token} userId: ${data.user_id}`;
+            window.location.href = "http://localhost:8080/main.html";
         }
         catch (error) {
             console.log('Error', error);
