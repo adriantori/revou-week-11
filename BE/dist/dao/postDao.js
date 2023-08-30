@@ -38,7 +38,7 @@ function getPosts() {
                 where: {
                     post_isDeleted: 0
                 },
-                attributes: ['post_title', 'post_content', 'user_id', 'createdAt', 'updatedAt']
+                attributes: ['post_id', 'post_title', 'post_content', 'user_id', 'createdAt', 'updatedAt']
             });
             return post;
         }

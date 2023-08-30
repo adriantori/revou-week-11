@@ -1,6 +1,6 @@
 import { Model, DataTypes } from 'sequelize';
 import { sequelize } from '../middlewares/database';
-import Role from './role'; // Adjust the path to match your file structure
+import Role from './role';
 
 class User extends Model {
     public user_id!: number;
@@ -10,6 +10,14 @@ class User extends Model {
 
     // Add the association
     public role!: Role;
+
+    // Define a custom validation method
+    public async validateUsername(username: string): Promise<string | undefined> {
+        const existingUser = await User.findOne({ where: { user_name: username } });
+        if (existingUser) {
+            return 'This username is already taken';
+        }
+    }
 }
 
 User.init(
@@ -22,6 +30,15 @@ User.init(
         user_name: {
             type: DataTypes.STRING,
             allowNull: false,
+unique: true,
+            validate: {
+                isUnique: async function (this: User, username: string): Promise<void> {
+                    const validationError = await this.validateUsername(username);
+                    if (validationError) {
+                        throw new Error(validationError);
+                    }
+                },
+            },
         },
         user_pass: {
             type: DataTypes.STRING,

@@ -27,7 +27,7 @@ function registerUser(username, password) {
             return user;
         }
         catch (error) {
-            throw new Error('Error creating user DAO: ' + error.message);
+            throw new Error(error.message.replace('Validation error: ', ''));
         }
     });
 }
@@ -43,16 +43,17 @@ function loginUser(username) {
                     model: role_1.default,
                     attributes: ['role_name'],
                     where: {
-                        role_id: sequelize_1.Sequelize.col('User.role_id') // Assuming Sequelize is the ORM you're using
+                        role_id: sequelize_1.Sequelize.col('User.role_id')
                     },
+                    as: 'role',
                     required: true // Inner join
                 },
-                attributes: ['user_id', 'user_name']
+                attributes: ['user_id', 'user_name', 'user_pass']
             });
             return user;
         }
         catch (error) {
-            throw new Error('Error login user DAO: ' + error.message);
+            throw new Error(error.message);
         }
     });
 }

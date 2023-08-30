@@ -8,14 +8,13 @@ async function registerUserService(username: string, password: string) {
         const user = await registerUserDao(username, hashedPassword);
         return user;
     } catch (error: any) {
-        throw new Error('Error registering user service: ' + error.message);
+        throw new Error(error.message);
     }
 }
 
 async function loginUserService(username: string, password: string) {
     try {
         const user = await loginUserDao(username);
-        console.log(user.user_pass, password);
         if(user){
             const isPasswordCorrect = await bcrypt.compare(password, user.user_pass);
             if(isPasswordCorrect){
@@ -24,8 +23,8 @@ async function loginUserService(username: string, password: string) {
         }
         return null
     } catch (error: any) {
-        console.log('Error registering user service: ' + error.message);
-        throw new Error('Error registering user service: ' + error.message);
+        console.log('error login service: ', error.message)
+        throw new Error(error.message);
     }
 }
 

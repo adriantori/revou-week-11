@@ -20,14 +20,34 @@ function registerUserController(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { username, password } = req.body;
         try {
+            if (password.length < 8) {
+                return res.status(400).json({
+                    message: 'Password must be at least 8 characters long',
+                });
+            }
+            if (!/^(?=.*[a-zA-Z])(?=.*[0-9])/.test(password)) {
+                return res.status(400).json({
+                    message: 'Password must contain both letters and numbers',
+                });
+            }
             const user = yield (0, userService_1.registerUserService)(username, password);
-            res.status(201).json({
-                message: 'Register success',
-                data: user,
-            });
+            if (user) {
+                res.status(201).json({
+                    message: 'Register success',
+                    data: user,
+                });
+            }
+            else {
+                res.status(409).json({
+                    message: 'username already exist',
+                    data: user,
+                });
+            }
         }
         catch (error) {
-            res.status(500).json({ message: 'Error registering user' });
+            res.status(500).json({
+                message: error.message
+            });
         }
     });
 }
@@ -38,15 +58,16 @@ function loginUserController(req, res) {
         try {
             const user = yield (0, userService_1.loginUserService)(username, password);
             if (user) {
-                const token = jsonwebtoken_1.default.sign({ userId: user.user_id, username: user.user_name, role: user.role_name }, jwt_1.default);
+                console.log(user.role.role_name);
+                const token = jsonwebtoken_1.default.sign({ userId: user.user_id, username: user.user_name, role: user.role.role_name }, jwt_1.default);
                 res.status(201).json({
                     message: 'Login success',
                     data: user, token
                 });
             }
             else {
-                res.status(400).json({
-                    error: 'Login data incorrect',
+                res.status(401).json({
+                    message: 'Login data incorrect',
                 });
             }
         }

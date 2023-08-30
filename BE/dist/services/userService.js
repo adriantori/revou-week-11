@@ -23,7 +23,7 @@ function registerUserService(username, password) {
             return user;
         }
         catch (error) {
-            throw new Error('Error registering user service: ' + error.message);
+            throw new Error(error.message);
         }
     });
 }
@@ -32,7 +32,6 @@ function loginUserService(username, password) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const user = yield (0, userDao_1.loginUser)(username);
-            console.log(user.user_pass, password);
             if (user) {
                 const isPasswordCorrect = yield bcrypt_1.default.compare(password, user.user_pass);
                 if (isPasswordCorrect) {
@@ -42,8 +41,8 @@ function loginUserService(username, password) {
             return null;
         }
         catch (error) {
-            console.log('Error registering user service: ' + error.message);
-            throw new Error('Error registering user service: ' + error.message);
+            console.log('error login service: ', error.message);
+            throw new Error(error.message);
         }
     });
 }

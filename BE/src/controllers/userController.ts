@@ -8,13 +8,36 @@ async function registerUserController(req: Request, res: Response) {
     const { username, password } = req.body;
 
     try {
+if (password.length < 8) {
+            return res.status(400).json({
+                message: 'Password must be at least 8 characters long',
+            });
+        }
+
+        if (!/^(?=.*[a-zA-Z])(?=.*[0-9])/.test(password)) {
+            return res.status(400).json({
+                message: 'Password must contain both letters and numbers',
+            });
+        }
+
         const user = await registerUserService(username, password);
+
+        if(user){
         res.status(201).json({
             message: 'Register success',
             data: user,
         });
-    } catch (error) {
-        res.status(500).json({ message: 'Error registering user' });
+    }else{
+            res.status(409).json({
+                message: 'username already exist',
+                data: user,
+            });
+        }
+        
+    } catch (error: any) {
+        res.status(500).json({ 
+            message: error.message
+        });
     }
 }
 
@@ -24,14 +47,15 @@ async function loginUserController(req: Request, res: Response) {
     try {
         const user = await loginUserService(username, password);
         if(user){
-            const token = jwt.sign({ userId: user.user_id, username: user.user_name, role: user.role_name}, JWT_SIGN!);
+            console.log(user.role.role_name);
+            const token = jwt.sign({ userId: user.user_id, username: user.user_name, role: user.role.role_name}, JWT_SIGN!);
             res.status(201).json({
                 message: 'Login success',
                 data: user, token
             })
         }else{
-            res.status(400).json({
-                error: 'Login data incorrect',
+            res.status(401).json({
+                message: 'Login data incorrect',
             });
         }
         
