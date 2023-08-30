@@ -10,7 +10,7 @@ interface CustomRequest extends Request {
 }
 
 // Construct the database URI
-const dbUri = process.env.MYSQL_URI || process.env.MYSQL_URL ||'mysql://root:@127.0.0.1:3306/mydatabase';
+const dbUri = process.env.MYSQL_URL || process.env.MYSQL_URI ||'mysql://root:@127.0.0.1:3306/mydatabase';
 
 // Create a connection pool using the URI
 const pool: Pool = createPool({

@@ -9,7 +9,7 @@ const dotenv_1 = __importDefault(require("dotenv"));
 const sequelize_1 = require("sequelize");
 dotenv_1.default.config();
 // Construct the database URI
-const dbUri = process.env.MYSQL_URI || process.env.MYSQL_URL || 'mysql://root:@127.0.0.1:3306/mydatabase';
+const dbUri = process.env.MYSQL_URL || process.env.MYSQL_URI || 'mysql://root:@127.0.0.1:3306/mydatabase';
 // Create a connection pool using the URI
 const pool = (0, promise_1.createPool)({
     uri: dbUri,
