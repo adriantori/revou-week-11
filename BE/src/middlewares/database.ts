@@ -9,23 +9,19 @@ interface CustomRequest extends Request {
     pool: PoolConnection;
 }
 
-const dbConfig = {
-    host: process.env.MYSQL_HOST! || '127.0.0.1',
-    port: parseInt(process.env.MYSQL_PORT!) || 3306,
-    user: process.env.MYSQL_USER! || 'root',
-    password: process.env.MYSQL_PASSWORD! || '',
-    database: process.env.MYSQL_DATABASE! || '',
-};
+// Construct the database URI
+const dbUri = process.env.MYSQL_URI || 'mysql://root:@127.0.0.1:3306/mydatabase';
 
-// Create a connection pool
-const sequelize = new Sequelize(dbConfig.database, dbConfig.user, dbConfig.password, {
-    host: dbConfig.host,
-    dialect: 'mysql',
-    port: dbConfig.port,
-    logQueryParameters: true
+// Create a connection pool using the URI
+const pool: Pool = createPool({
+    uri: dbUri,
 });
 
-const pool: Pool = createPool(dbConfig);
+// Create Sequelize instance using the URI
+const sequelize = new Sequelize(dbUri, {
+    dialect: 'mysql',
+    logQueryParameters: true,
+});
 
 // Middleware function to attach the database connection pool to the request object
 const attachDB = (req: CustomRequest, res: Response, next: NextFunction): void => {
@@ -33,6 +29,7 @@ const attachDB = (req: CustomRequest, res: Response, next: NextFunction): void =
         req.pool = connection;
         next();
     }).catch((err) => {
+        console.log(dbUri);
         console.error('Error getting database connection:', err);
         res.status(500).json({ message: 'Database error' });
     });
