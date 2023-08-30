@@ -4,7 +4,7 @@ info:
   version: 1.0.0
   description: Back-end API for Blog Posting
 servers:
-  - url: http://localhost:8080/api/v1
+  - url: https://adriantori-w11-be.up.railway.app/api/v1
     description: 'Deployment Server'
 tags:
   - name: Users
