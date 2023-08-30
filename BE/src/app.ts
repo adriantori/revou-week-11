@@ -2,7 +2,7 @@ import express, { Request, Response, NextFunction } from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv'
 import fs from 'fs'
-const yaml = require('yaml');
+import yaml from 'yaml';
 import swaggerUi from 'swagger-ui-express';
 
 import { userRoute } from './routes/userRoute';

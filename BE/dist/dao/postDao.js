@@ -52,6 +52,7 @@ exports.getPosts = getPosts;
 function updatePost(postTitle, postBody, userId, postId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            console.log('Inside updatePost DAO'); // Add this line
             const post = yield post_1.default.update({
                 post_title: postTitle,
                 post_content: postBody,

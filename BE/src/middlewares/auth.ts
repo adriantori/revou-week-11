@@ -20,7 +20,7 @@ const auth = (allowedRoles: string[]) => {
 
       const userRole = decodedToken.role.role_name; 
       if (allowedRoles.includes(userRole)) {
-        res.locals.userId = decodedToken.userId
+        res.locals.userId = decodedToken.userId;
         next(); 
       } else {
         res.status(403).json({
@@ -37,4 +37,4 @@ const auth = (allowedRoles: string[]) => {
   };
 };
 
-export {auth,};
+export {auth};

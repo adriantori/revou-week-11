@@ -33,14 +33,14 @@ function getPostsController(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const post = yield (0, postService_1.getPostsService)();
-            res.status(201).json({
-                message: 'Posted successfully',
+            res.status(200).json({
+                message: 'Posts retrieved successfully',
                 data: post,
             });
         }
         catch (error) {
             console.log("error createPost controller");
-            res.status(500).json({ message: 'Error creating post' });
+            res.status(500).json({ message: 'Error retrieving posts' });
         }
     });
 }
@@ -51,14 +51,14 @@ function updatePostController(req, res) {
         try {
             const userId = res.locals.userId;
             const post = yield (0, postService_1.updatePostService)(postTitle, postBody, userId, postId);
-            res.status(201).json({
-                message: 'Posted successfully',
+            res.status(200).json({
+                message: 'Post updated successfully',
                 data: post,
             });
         }
         catch (error) {
-            console.log("error createPost controller");
-            res.status(500).json({ message: 'Error creating post' });
+            console.log("error updatePost controller");
+            res.status(500).json({ message: 'Error updating post' });
         }
     });
 }
@@ -69,7 +69,7 @@ function deletePostController(req, res) {
         try {
             const post = yield (0, postService_1.deletePostService)(postId);
             res.status(201).json({
-                message: 'Posted successfully',
+                message: 'Post deleted successfully',
                 data: post,
             });
         }

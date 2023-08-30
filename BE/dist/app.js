@@ -7,7 +7,7 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const dotenv_1 = __importDefault(require("dotenv"));
 const fs_1 = __importDefault(require("fs"));
-const yaml = require('yaml');
+const yaml_1 = __importDefault(require("yaml"));
 const swagger_ui_express_1 = __importDefault(require("swagger-ui-express"));
 const userRoute_1 = require("./routes/userRoute");
 const database_1 = require("./middlewares/database");
@@ -16,7 +16,7 @@ dotenv_1.default.config();
 const app = (0, express_1.default)();
 const port = process.env.PORT;
 const file = fs_1.default.readFileSync('./docs/openApi.yaml', 'utf8');
-const swaggerDocument = yaml.parse(file);
+const swaggerDocument = yaml_1.default.parse(file);
 app.use((0, cors_1.default)());
 app.use(express_1.default.json());
 app.use((err, req, res, next) => {

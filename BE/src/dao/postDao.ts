@@ -34,6 +34,7 @@ async function getPosts(): Promise<any> {
 
 async function updatePost(postTitle: string, postBody: string, userId: number, postId: number): Promise<any> {
     try {
+        console.log('Inside updatePost DAO'); // Add this line
         const post = await Post.update({
             post_title: postTitle,
             post_content: postBody,

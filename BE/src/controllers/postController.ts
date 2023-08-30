@@ -23,13 +23,13 @@ async function getPostsController(req: Request, res: Response) {
 
     try {        
         const post = await getPostsService();
-        res.status(201).json({
-            message: 'Posted successfully',
+        res.status(200).json({
+            message: 'Posts retrieved successfully',
             data: post,
         });
     } catch (error) {
         console.log("error createPost controller");
-        res.status(500).json({ message: 'Error creating post' });
+        res.status(500).json({ message: 'Error retrieving posts' });
     }
 }
 
@@ -40,13 +40,13 @@ async function updatePostController(req: Request, res: Response) {
         const userId = res.locals.userId
 
         const post = await updatePostService(postTitle, postBody, userId, postId);
-        res.status(201).json({
-            message: 'Posted successfully',
+        res.status(200).json({
+            message: 'Post updated successfully',
             data: post,
         });
     } catch (error) {
-        console.log("error createPost controller");
-        res.status(500).json({ message: 'Error creating post' });
+        console.log("error updatePost controller");
+        res.status(500).json({ message: 'Error updating post' });
     }
 }
 
@@ -56,7 +56,7 @@ async function deletePostController(req: Request, res: Response) {
     try {
         const post = await deletePostService(postId);
         res.status(201).json({
-            message: 'Posted successfully',
+            message: 'Post deleted successfully',
             data: post,
         });
     } catch (error) {
