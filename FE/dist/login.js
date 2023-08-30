@@ -7,8 +7,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-const api_url = 'http://localhost:8080' + '/api/v1/register';
-export default function register(username, password) {
+const api_url = 'http://localhost:8080' + '/api/v1/login';
+export default function login(username, password) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const response = yield fetch(api_url, {
@@ -26,7 +26,7 @@ export default function register(username, password) {
             alert(data.message);
         }
         catch (error) {
-            console.log('Errors', error);
+            console.log('Error', error);
             alert('DB error occurred');
         }
     });
