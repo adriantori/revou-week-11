@@ -28,7 +28,8 @@ const auth = (allowedRoles) => {
             }
             const token = authHeader.split(' ')[1];
             const decodedToken = jsonwebtoken_1.default.verify(token, jwt_1.default);
-            const userRole = decodedToken.role.role_name;
+            const userRole = decodedToken.role;
+            console.log(userRole, allowedRoles);
             if (allowedRoles.includes(userRole)) {
                 res.locals.userId = decodedToken.userId;
                 next();
