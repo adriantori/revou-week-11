@@ -1,4 +1,5 @@
 import Post from "../models/post";
+import User from "../models/user";
 
 async function createPost(postTitle: string, postBody: string, userId: number): Promise<any> {
     try {
@@ -15,19 +16,35 @@ async function createPost(postTitle: string, postBody: string, userId: number): 
     }
 }
 
-
 async function getPosts(): Promise<any> {
     try {
-        const post = await Post.findAll({
-            where:{
-                post_isDeleted:0
+        const posts = await Post.findAll({
+            where: {
+                post_isDeleted: 0,
             },
-            attributes: ['post_id', 'post_title', 'post_content', 'user_id', 'createdAt', 'updatedAt']
-        })
-        return post;
+            attributes: ['post_id', 'post_title', 'post_content', 'user_id', 'createdAt', 'updatedAt'],
+            include: [
+                {
+                    model: User,
+                    as: 'user',
+                    attributes: ['user_name'],
+                },
+            ],
+            order: [['updatedAt', 'DESC']],
+        });
+
+        return posts.map(post => ({
+            post_id: post.post_id,
+            post_title: post.post_title,
+            post_content: post.post_content,
+            user_id: post.user_id,
+            user_name: post.user.user_name,
+            createdAt: post.createdAt,
+            updatedAt: post.updatedAt,
+        }));
     } catch (error: any) {
-        console.log('Error creating post DAO: ' + error.message);
-        throw new Error('Error creating post DAO: ' + error.message);
+        console.log('Error getting posts: ' + error.message);
+        throw new Error('Error getting posts: ' + error.message);
     }
 }
 

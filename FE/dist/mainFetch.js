@@ -8,6 +8,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { BASE_URL } from "./constants.js";
+import dateTimeFormatter from "./dateTimeFormatter.js";
 import trimCookie from "./trimCookie.js";
 const api_url = BASE_URL + '/api/v1/posts';
 export default function mainFetch() {
@@ -24,6 +25,7 @@ export default function mainFetch() {
             if (data.data.length !== 0) {
                 const formOutput = document.getElementById("rowOutput");
                 for (let i = 0; i < data.data.length; i++) {
+                    console.log(data.data[i].createdAt, data.data[i].updatedAt);
                     formOutput.innerHTML +=
                         `<div class="col-lg-4 col-md-6 mb-4">
                 <div class="card"id="post-${data.data[i].post_id}">
@@ -34,10 +36,11 @@ export default function mainFetch() {
                         </a>
                     </div>
                     <div class="card-body">
-                        <h5 class="card-title"><b>${data.data[i].post_title}<b/></h5>
-                        <h5 class="card-title">by: ${data.data[i].user_name}</h5>
+                        <h5 class="card-title">${data.data[i].post_title}</h5>
+                        <h6 class="card-subtitle">by: ${data.data[i].user_name}</h6>
                         <p class="card-text">
-                            ${data.data[i].post_content}
+                            <span>Created at: ${dateTimeFormatter(data.data[i].createdAt)}</span><br/>
+                            <span>Updated at: ${dateTimeFormatter(data.data[i].updatedAt)}</span>
                         </p>
                     </div>
                 </div>

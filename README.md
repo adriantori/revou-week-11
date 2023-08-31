@@ -1,6 +1,6 @@
 # RevoU Week 11 Assignment - Milestone Project 2
 
-Creates simple Blog application using ExpressJs, Typescript, Swagger, and DOM, also connects it with MySQL database.
+Creates simple Blog application using ExpressJs, Typescript, Swagger, and DOM, also connects it with MySQL database... **in 4 days**....
 
 ## Assignment Information
 
@@ -25,6 +25,12 @@ Creates simple Blog application using ExpressJs, Typescript, Swagger, and DOM, a
 5. When connection successfully established, it will be shown on Console.
    
    ![](file://B:\Works\RevoU\Week 9\submission\assets\img\README\2023-08-18-09-57-54-image.png?msec=1693377624666)
+
+## Deploy Link
+
+Back-end: [https://adriantori-w11-be.up.railway.app/](https://adriantori-w11-be.up.railway.app/)
+
+Swagger UI: [Swagger UI](https://adriantori-w11-be.up.railway.app/api-docs)
 
 ## API Endpoint
 
@@ -132,7 +138,6 @@ Response:
 {
     "message": "Error || Post updated"
 }
-
 ```
 
 ##### DELETE /api/v1/posts
@@ -173,8 +178,6 @@ CREATE TABLE `roles` (
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
-
-
 
 #### Users table
 
@@ -224,8 +227,12 @@ CREATE TABLE `posts` (
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 ```
 
-## Deploy Link
+## Validation
 
-Back-end: [https://adriantori-w11-be.up.railway.app/](https://adriantori-w11-be.up.railway.app/)
+There's only 2 validation in the entire app, Register has minimum 8 characters and alphanumeric, and Post title and Post Body cant be empty.
 
-Swagger UI: [https://adriantori-w11-be.up.railway.app/api-docs](https://adriantori-w11-be.up.railway.app/api-docs)
+## Unit Testing
+
+### 
+
+## Front-end - Simple Explanation

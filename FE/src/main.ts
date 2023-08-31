@@ -3,7 +3,6 @@ import logAllCookies from "./mainLogging.js";
 import mainLogout from "./mainLogout.js";
 import mainPost from "./mainPost.js";
 
-// Add click event listener to the logout button
 mainFetch();
 
 const showCookies = document.getElementById("showCookies");

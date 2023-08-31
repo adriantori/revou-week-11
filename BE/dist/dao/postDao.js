@@ -14,6 +14,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deletePost = exports.updatePost = exports.getPosts = exports.createPost = void 0;
 const post_1 = __importDefault(require("../models/post"));
+const user_1 = __importDefault(require("../models/user"));
 function createPost(postTitle, postBody, userId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
@@ -34,17 +35,33 @@ exports.createPost = createPost;
 function getPosts() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const post = yield post_1.default.findAll({
+            const posts = yield post_1.default.findAll({
                 where: {
-                    post_isDeleted: 0
+                    post_isDeleted: 0,
                 },
-                attributes: ['post_id', 'post_title', 'post_content', 'user_id', 'createdAt', 'updatedAt']
+                attributes: ['post_id', 'post_title', 'post_content', 'user_id', 'createdAt', 'updatedAt'],
+                include: [
+                    {
+                        model: user_1.default,
+                        as: 'user',
+                        attributes: ['user_name'],
+                    },
+                ],
+                order: [['updatedAt', 'DESC']],
             });
-            return post;
+            return posts.map(post => ({
+                post_id: post.post_id,
+                post_title: post.post_title,
+                post_content: post.post_content,
+                user_id: post.user_id,
+                user_name: post.user.user_name,
+                createdAt: post.createdAt,
+                updatedAt: post.updatedAt,
+            }));
         }
         catch (error) {
-            console.log('Error creating post DAO: ' + error.message);
-            throw new Error('Error creating post DAO: ' + error.message);
+            console.log('Error getting posts: ' + error.message);
+            throw new Error('Error getting posts: ' + error.message);
         }
     });
 }

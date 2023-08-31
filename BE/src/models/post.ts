@@ -8,6 +8,9 @@ class Post extends Model {
     public post_content!: string;
     public user_id!: number;
     public post_created!: Date;
+    user: any;
+    createdAt: any;
+    updatedAt: any;
 }
 
 Post.init(
