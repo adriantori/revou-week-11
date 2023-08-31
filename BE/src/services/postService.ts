@@ -1,4 +1,4 @@
-import { createPost, deletePost, getPosts, updatePost } from "../dao/postDao";
+import { createPost, deletePost, getPosts, getUserPostList, updatePost } from "../dao/postDao";
 
 async function createPostService(postTitle: string, postBody: string, user_id: number) {
     try {
@@ -13,6 +13,16 @@ async function createPostService(postTitle: string, postBody: string, user_id: n
 async function getPostsService() {
     try {
         const post = await getPosts();
+        return post;
+    } catch (error: any) {
+        throw new Error('Error registering user service: ' + error.message);
+    }
+}
+
+
+async function getUserPostListService(username: string) {
+    try {
+        const post = await getUserPostList(username);
         return post;
     } catch (error: any) {
         throw new Error('Error registering user service: ' + error.message);
@@ -37,4 +47,4 @@ async function deletePostService(post_id: number) {
         throw new Error('Error registering user service: ' + error.message);
     }
 }
-export { createPostService, getPostsService, updatePostService, deletePostService };
+export { createPostService, getPostsService, updatePostService, deletePostService, getUserPostListService };

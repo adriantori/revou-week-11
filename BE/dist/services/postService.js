@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePostService = exports.updatePostService = exports.getPostsService = exports.createPostService = void 0;
+exports.getUserPostListService = exports.deletePostService = exports.updatePostService = exports.getPostsService = exports.createPostService = void 0;
 const postDao_1 = require("../dao/postDao");
 function createPostService(postTitle, postBody, user_id) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -35,6 +35,18 @@ function getPostsService() {
     });
 }
 exports.getPostsService = getPostsService;
+function getUserPostListService(username) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const post = yield (0, postDao_1.getUserPostList)(username);
+            return post;
+        }
+        catch (error) {
+            throw new Error('Error registering user service: ' + error.message);
+        }
+    });
+}
+exports.getUserPostListService = getUserPostListService;
 function updatePostService(postTitle, postBody, user_id, post_id) {
     return __awaiter(this, void 0, void 0, function* () {
         try {

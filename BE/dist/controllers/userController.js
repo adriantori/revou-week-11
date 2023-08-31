@@ -58,7 +58,6 @@ function loginUserController(req, res) {
         try {
             const user = yield (0, userService_1.loginUserService)(username, password);
             if (user) {
-                console.log(user.role.role_name);
                 const token = jsonwebtoken_1.default.sign({ userId: user.user_id, username: user.user_name, role: user.role.role_name }, jwt_1.default);
                 res.status(201).json({
                     message: 'Login success',

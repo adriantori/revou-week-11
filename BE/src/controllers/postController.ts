@@ -1,6 +1,6 @@
 import { Request, Response, response} from 'express'
 
-import { createPostService, deletePostService, getPostsService, updatePostService } from '../services/postService';
+import { createPostService, deletePostService, getPostsService, getUserPostListService, updatePostService } from '../services/postService';
 
 async function createPostController(req: Request, res: Response) {
     const { postTitle, postBody } = req.body;
@@ -30,6 +30,25 @@ async function getPostsController(req: Request, res: Response) {
     } catch (error) {
         console.log("error createPost controller");
         res.status(500).json({ message: 'Error retrieving posts' });
+    }
+}
+
+
+async function getUserPostListController(req: Request, res: Response) {
+    const username = req.params.username;
+    try {        
+        if(username == res.locals.username){
+            const post = await getUserPostListService(username);
+            res.status(200).json({
+                message: 'Posts retrieved successfully',
+                data: post,
+            });
+        }else{
+            res.status(401).json({ message: 'You cant see other people post, yet.' });
+        }
+        
+    } catch (error) {
+        res.status(500).json({ message: 'Error retrieving post lists' });
     }
 }
 
@@ -65,4 +84,4 @@ async function deletePostController(req: Request, res: Response) {
     }
 }
 
-export { createPostController, getPostsController, updatePostController, deletePostController }
+export { createPostController, getPostsController, updatePostController, deletePostController, getUserPostListController }

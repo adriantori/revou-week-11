@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deletePostController = exports.updatePostController = exports.getPostsController = exports.createPostController = void 0;
+exports.getUserPostListController = exports.deletePostController = exports.updatePostController = exports.getPostsController = exports.createPostController = void 0;
 const postService_1 = require("../services/postService");
 function createPostController(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -45,6 +45,27 @@ function getPostsController(req, res) {
     });
 }
 exports.getPostsController = getPostsController;
+function getUserPostListController(req, res) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const username = req.params.username;
+        try {
+            if (username == res.locals.username) {
+                const post = yield (0, postService_1.getUserPostListService)(username);
+                res.status(200).json({
+                    message: 'Posts retrieved successfully',
+                    data: post,
+                });
+            }
+            else {
+                res.status(401).json({ message: 'You cant see other people post, yet.' });
+            }
+        }
+        catch (error) {
+            res.status(500).json({ message: 'Error retrieving post lists' });
+        }
+    });
+}
+exports.getUserPostListController = getUserPostListController;
 function updatePostController(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { postTitle, postBody, postId } = req.body;

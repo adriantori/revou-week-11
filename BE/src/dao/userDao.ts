@@ -28,7 +28,7 @@ async function loginUser (username: string): Promise<any> {
                 where: {
                     role_id: Sequelize.col('User.role_id')
                 },
-as: 'role',
+                as: 'role',
                 required: true // Inner join
             },
             attributes: ['user_id', 'user_name','user_pass']

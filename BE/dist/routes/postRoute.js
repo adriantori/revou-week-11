@@ -6,6 +6,7 @@ const postController_1 = require("../controllers/postController");
 const auth_1 = require("../middlewares/auth");
 exports.postRoute = (0, express_1.Router)();
 exports.postRoute.post('/posts', (0, auth_1.auth)(["user"]), postController_1.createPostController);
+exports.postRoute.get('/posts/:username', (0, auth_1.auth)(["user"]), postController_1.getUserPostListController);
 exports.postRoute.get('/posts', (0, auth_1.auth)(["admin", "user"]), postController_1.getPostsController);
 exports.postRoute.patch('/posts', (0, auth_1.auth)(["user"]), postController_1.updatePostController);
 exports.postRoute.delete('/posts', (0, auth_1.auth)(["admin"]), postController_1.deletePostController);

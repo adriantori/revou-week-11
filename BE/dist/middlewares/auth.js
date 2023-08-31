@@ -32,6 +32,7 @@ const auth = (allowedRoles) => {
             console.log(userRole, allowedRoles);
             if (allowedRoles.includes(userRole)) {
                 res.locals.userId = decodedToken.userId;
+                res.locals.username = decodedToken.username;
                 next();
             }
             else {
