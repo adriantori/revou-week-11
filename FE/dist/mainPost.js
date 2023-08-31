@@ -8,19 +8,23 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { BASE_URL } from "./constants.js";
-const api_url = BASE_URL + '/api/v1/register';
-export default function register(username, password) {
+import trimCookie from "./trimCookie.js";
+const api_url = BASE_URL + '/api/v1/posts';
+export default function mainPost(postTitle, postBody) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            const token = trimCookie();
+            console.log(postTitle, postBody);
             const response = yield fetch(api_url, {
                 method: 'POST',
                 mode: 'cors',
                 headers: {
                     'Content-Type': 'application/json',
+                    'Authorization': `Bearer ${token.trim()}` // Trim any leading/trailing spaces
                 },
                 body: JSON.stringify({
-                    username: username,
-                    password: password,
+                    postTitle: postTitle,
+                    postBody: postBody,
                 }),
             });
             const data = yield response.json();

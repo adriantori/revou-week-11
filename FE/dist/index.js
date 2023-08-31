@@ -1,12 +1,13 @@
 import login from "./login.js";
 import register from "./register.js";
 document.addEventListener('DOMContentLoaded', () => {
-    const formRegister = document.getElementById('signupForm');
+    const formRegister = document.getElementById('registerForm');
     formRegister === null || formRegister === void 0 ? void 0 : formRegister.addEventListener('submit', (event) => {
         event.preventDefault();
         const username = document.getElementById('username').value;
         const password = document.getElementById('password').value;
         const passwordConf = document.getElementById('passwordConf').value;
+        console.log(username, password, passwordConf);
         if (password == passwordConf) {
             try {
                 register(username, password);

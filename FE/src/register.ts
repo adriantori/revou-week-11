@@ -1,4 +1,6 @@
-const api_url = 'http://localhost:8080' + '/api/v1/register';
+import { BASE_URL } from "./constants.js";
+
+const api_url = BASE_URL + '/api/v1/register';
 
 export default async function register(username: string, password: string) {
     try {

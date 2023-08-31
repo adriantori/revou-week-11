@@ -2,13 +2,13 @@ import login from "./login.js";
 import register from "./register.js";
 
 document.addEventListener('DOMContentLoaded', () => {
-    const formRegister = document.getElementById('signupForm');
+    const formRegister = document.getElementById('registerForm');
     formRegister?.addEventListener('submit', (event) => {
         event.preventDefault();
         const username: string = (document.getElementById('username') as HTMLInputElement).value;
         const password: string = (document.getElementById('password') as HTMLInputElement).value;
         const passwordConf: string = (document.getElementById('passwordConf') as HTMLInputElement).value;
-
+        console.log(username, password, passwordConf);
         if (password == passwordConf) {
             try {
                 register(username, password)

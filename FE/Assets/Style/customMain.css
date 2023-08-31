@@ -1,0 +1,10 @@
+footer {
+    text-align: center; }
+    footer p {
+      color: #777; }
+      footer p a, footer p a:focus {
+        color: #b8b09f;
+        transition: all .3s;
+        text-decoration: none !important; }
+        footer p a:hover, footer p a:focus:hover {
+          color: #f95959; }
