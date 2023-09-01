@@ -14,7 +14,8 @@ const api_url = BASE_URL + '/api/v1/posts';
 export default function mainFetch() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const token = trimCookie();
+            const token = trimCookie().token;
+            //console.log(token);
             const response = yield fetch(api_url, {
                 method: 'GET',
                 headers: {
@@ -25,13 +26,12 @@ export default function mainFetch() {
             if (data.data.length !== 0) {
                 const formOutput = document.getElementById("rowOutput");
                 for (let i = 0; i < data.data.length; i++) {
-                    console.log(data.data[i].createdAt, data.data[i].updatedAt);
                     formOutput.innerHTML +=
                         `<div class="col-lg-4 col-md-6 mb-4">
                 <div class="card"id="post-${data.data[i].post_id}">
                     <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
                         <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
-                        <a href="#!">
+                        <a href="#">
                             <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
                         </a>
                     </div>

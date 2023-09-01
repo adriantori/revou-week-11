@@ -39,7 +39,6 @@ export default async function login(username: string, password: string) {
         }
 
     } catch (error) {
-        console.log('Error', error);
         alert('DB error occurred');
     }
 }

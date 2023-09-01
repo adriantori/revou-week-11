@@ -2,6 +2,7 @@ import mainFetch from "./mainFetch.js";
 import logAllCookies from "./mainLogging.js";
 import mainLogout from "./mainLogout.js";
 import mainPost from "./mainPost.js";
+import trimCookie from "./trimCookie.js";
 
 mainFetch();
 
@@ -13,6 +14,17 @@ showCookies?.addEventListener("click", function () {
 const logoutButton = document.getElementById("logoutButton");
 logoutButton?.addEventListener("click", function () {
     mainLogout();
+});
+
+const toMyProfile = document.getElementById("myProfile");
+toMyProfile?.addEventListener("click", function () {
+    const userName = trimCookie().username
+    window.location.href = `/myProfile.html?username=${userName}`;
+});
+
+const toHomepage = document.getElementById("Homepage");
+toHomepage?.addEventListener("click", function () {
+    window.location.href = "/main.html";
 });
 
 const addPost = document.getElementById("btnCreatePost");

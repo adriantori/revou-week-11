@@ -9,28 +9,29 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 import { BASE_URL } from "./constants.js";
 import trimCookie from "./trimCookie.js";
-const api_url = BASE_URL + '/api/v1/posts';
-export default function mainPost(postTitle, postBody) {
+const api_url = BASE_URL + `/api/v1/posts/`;
+export default function myProfileDelete(postId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const token = trimCookie().token;
-            const response = yield fetch(api_url, {
-                method: 'POST',
-                mode: 'cors',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': `Bearer ${token.trim()}` // Trim any leading/trailing spaces
-                },
-                body: JSON.stringify({
-                    postTitle: postTitle,
-                    postBody: postBody,
-                }),
-            });
-            const data = yield response.json();
-            alert(data.message);
+            if (confirm("are you sure you want to delete?")) {
+                const token = trimCookie().token;
+                const response = yield fetch(api_url, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        postId: postId
+                    }),
+                });
+                yield response.json();
+                alert("Post successfully deleted, bye bye post~");
+                location.reload();
+            }
         }
         catch (error) {
-            alert('DB error occurred');
+            alert(error);
         }
     });
 }

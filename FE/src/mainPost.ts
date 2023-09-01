@@ -5,8 +5,7 @@ const api_url = BASE_URL + '/api/v1/posts';
 
 export default async function mainPost(postTitle: string, postBody: string) {
     try {
-        const token = trimCookie()
-        console.log(postTitle, postBody);
+        const token = trimCookie().token
         const response = await fetch(api_url!, {
             method: 'POST',
             mode: 'cors',
@@ -22,7 +21,6 @@ export default async function mainPost(postTitle: string, postBody: string) {
             const data = await response.json();
             alert(data.message);
         } catch (error) {
-            console.log('Errors', error);
             alert('DB error occurred'); 
         }
 }

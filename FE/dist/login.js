@@ -43,7 +43,6 @@ export default function login(username, password) {
             }
         }
         catch (error) {
-            console.log('Error', error);
             alert('DB error occurred');
         }
     });
