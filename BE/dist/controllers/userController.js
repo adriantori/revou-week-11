@@ -8,8 +8,13 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.loginUserController = exports.registerUserController = void 0;
+const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
+const jwt_1 = __importDefault(require("../configs/jwt"));
 const userService_1 = require("../services/userService");
 function registerUserController(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
@@ -55,10 +60,10 @@ function loginUserController(req, res) {
             const user = yield (0, userService_1.loginUserService)(username, password);
             console.log(user);
             if (user) {
-                //const token = jwt.sign({ userId: user.user_id, username: user.user_name, role: user.role.role_name }, JWT_SIGN!);
+                const token = jsonwebtoken_1.default.sign({ userId: user.user_id, username: user.user_name, role: user.role.role_name }, jwt_1.default);
                 res.status(201).json({
                     message: 'Login success',
-                    data: user
+                    data: user, token
                 });
             }
             else {
