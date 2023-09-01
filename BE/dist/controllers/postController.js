@@ -57,7 +57,7 @@ function getUserPostListController(req, res) {
                 });
             }
             else {
-                res.status(401).json({ message: 'You cant see other people post, yet.' });
+                res.status(401).json({ message: `You can't see other people's posts, yet.` });
             }
         }
         catch (error) {

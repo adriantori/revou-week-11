@@ -54,7 +54,7 @@ describe('deletePostController', () => {
         yield (0, postController_1.deletePostController)(req, res);
         expect(res.status).toHaveBeenCalledWith(500);
         expect(res.json).toHaveBeenCalledWith({
-            message: 'Error creating post',
+            message: 'Error deleting post',
         });
     }));
 });

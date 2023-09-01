@@ -48,7 +48,7 @@ async function getUserPostListController(req: Request, res: Response) {
         }
         
     } catch (error) {
-        res.status(500).json({ message: 'Error retrieving post lists' });
+        res.status(500).json({ message: 'Error retrieving post lists!' });
     }
 }
 
