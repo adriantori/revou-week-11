@@ -43,10 +43,10 @@ async function registerUserController(req: Request, res: Response) {
 
 async function loginUserController(req: Request, res: Response) {
     const { username, password } = req.body;
-
+    console.log(username, password);
     try {
         const user = await loginUserService(username, password);
-        console.log(user.user_id, user.user_name, user.role.role_name);
+        console.log(user);
         if (user) {
             const token = jwt.sign({ userId: user.user_id, username: user.user_name, role: user.role.role_name }, JWT_SIGN!);
             

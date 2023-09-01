@@ -55,9 +55,10 @@ exports.registerUserController = registerUserController;
 function loginUserController(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { username, password } = req.body;
+        console.log(username, password);
         try {
             const user = yield (0, userService_1.loginUserService)(username, password);
-            console.log(user.user_id, user.user_name, user.role.role_name);
+            console.log(user);
             if (user) {
                 const token = jsonwebtoken_1.default.sign({ userId: user.user_id, username: user.user_name, role: user.role.role_name }, jwt_1.default);
                 res.status(201).json({
