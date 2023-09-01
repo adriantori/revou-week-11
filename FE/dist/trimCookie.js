@@ -12,7 +12,7 @@ export default function trimCookie() {
         }
     }
     if (token === '') {
-        console.log("Token not found in cookies");
+        console.log("Token not found in cookies!");
         window.location.href = "/";
     }
     return { token, username };
