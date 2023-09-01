@@ -40,6 +40,7 @@ export default function mainFetch() {
                         <p class="card-text">
                             <span>Created at: ${dateTimeFormatter(data.data[i].createdAt)}</span><br/>
                             <span>Updated at: ${dateTimeFormatter(data.data[i].updatedAt)}</span>
+                            <button type="button" class="btn btn-danger m-2 delete-button" data-post-id=${data.data[i].post_id}>Delete</button>
                         </p>
                     </div>
                 </div>

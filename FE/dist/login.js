@@ -32,14 +32,25 @@ export default function login(username, password) {
                 // Encode token and user ID values
                 const encodedToken = encodeURIComponent(data.token);
                 const encodedUserName = encodeURIComponent(data.data.user_name);
+                const encodedRole = encodeURIComponent(data.data.role.role_name);
                 // Construct the cookie strings using template literals
                 const tokenCookieValue = `token=${encodedToken};${expires};path=/`;
                 const userIdCookieValue = `userName=${encodedUserName};${expires};path=/`;
+                const userRoleCookieValue = `role=${encodedRole};${expires};path=/`;
                 // Set the cookies
                 document.cookie = tokenCookieValue;
                 document.cookie = userIdCookieValue;
+                document.cookie = userRoleCookieValue;
                 // Redirect to main.html
-                window.location.href = "main.html";
+                if (data.data.role.role_name == "user") {
+                    window.location.href = "main.html";
+                }
+                else if (data.data.role.role_name == "admin") {
+                    window.location.href = "adminPage.html";
+                }
+                else {
+                    alert("STOP YOU CRIMINAL SCUM!");
+                }
             }
         }
         catch (error) {
