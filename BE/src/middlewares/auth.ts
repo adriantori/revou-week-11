@@ -19,7 +19,6 @@ const auth = (allowedRoles: string[]) => {
       const decodedToken: any = jwt.verify(token, JWT_SIGN!);
 
       const userRole = decodedToken.role; 
-      console.log(userRole, allowedRoles);
       if (allowedRoles.includes(userRole)) {
         res.locals.userId = decodedToken.userId;
         res.locals.username = decodedToken.username

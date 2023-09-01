@@ -87,6 +87,7 @@ exports.updatePostController = updatePostController;
 function deletePostController(req, res) {
     return __awaiter(this, void 0, void 0, function* () {
         const { postId } = req.body;
+        console.log(postId);
         try {
             const post = yield (0, postService_1.deletePostService)(postId);
             res.status(201).json({
@@ -95,8 +96,7 @@ function deletePostController(req, res) {
             });
         }
         catch (error) {
-            console.log("error createPost controller");
-            res.status(500).json({ message: 'Error creating post' });
+            res.status(500).json({ message: 'Error deleting post' });
         }
     });
 }

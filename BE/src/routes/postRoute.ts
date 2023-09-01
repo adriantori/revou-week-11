@@ -8,4 +8,4 @@ postRoute.post('/posts', auth(["user"]), createPostController);
 postRoute.get('/posts/:username', auth(["user"]), getUserPostListController)
 postRoute.get('/posts', auth(["admin","user"]), getPostsController);
 postRoute.patch('/posts', auth(["user"]), updatePostController);
-postRoute.delete('/posts', auth(["admin"]), deletePostController);
+postRoute.delete('/posts', auth(["admin", "user"]), deletePostController);

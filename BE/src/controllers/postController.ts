@@ -71,7 +71,7 @@ async function updatePostController(req: Request, res: Response) {
 
 async function deletePostController(req: Request, res: Response) {
     const { postId } = req.body;
-
+    console.log(postId);
     try {
         const post = await deletePostService(postId);
         res.status(201).json({
@@ -79,8 +79,7 @@ async function deletePostController(req: Request, res: Response) {
             data: post,
         });
     } catch (error) {
-        console.log("error createPost controller");
-        res.status(500).json({ message: 'Error creating post' });
+        res.status(500).json({ message: 'Error deleting post' });
     }
 }
 
