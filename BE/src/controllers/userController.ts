@@ -46,8 +46,10 @@ async function loginUserController(req: Request, res: Response) {
 
     try {
         const user = await loginUserService(username, password);
+        console.log(user.user_id, user.user_name, user.role.role_name);
         if (user) {
             const token = jwt.sign({ userId: user.user_id, username: user.user_name, role: user.role.role_name }, JWT_SIGN!);
+            
             res.status(201).json({
                 message: 'Login success',
                 data: user, token
