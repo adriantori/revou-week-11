@@ -61,7 +61,7 @@ function getUserPostListController(req, res) {
             }
         }
         catch (error) {
-            res.status(500).json({ message: 'Error retrieving post lists' });
+            res.status(500).json({ message: 'Error retrieving post lists!' });
         }
     });
 }

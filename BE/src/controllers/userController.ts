@@ -57,6 +57,7 @@ async function loginUserController(req: Request, res: Response) {
         } else {
             res.status(401).json({
                 message: 'Login data incorrect',
+                data: user
             });
         }
 

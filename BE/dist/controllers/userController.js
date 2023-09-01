@@ -57,6 +57,7 @@ function loginUserController(req, res) {
         const { username, password } = req.body;
         try {
             const user = yield (0, userService_1.loginUserService)(username, password);
+            console.log(user.user_id, user.user_name, user.role.role_name);
             if (user) {
                 const token = jsonwebtoken_1.default.sign({ userId: user.user_id, username: user.user_name, role: user.role.role_name }, jwt_1.default);
                 res.status(201).json({
@@ -67,6 +68,7 @@ function loginUserController(req, res) {
             else {
                 res.status(401).json({
                     message: 'Login data incorrect',
+                    data: user
                 });
             }
         }
