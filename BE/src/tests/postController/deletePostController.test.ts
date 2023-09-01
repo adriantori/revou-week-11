@@ -60,7 +60,7 @@ describe('deletePostController', () => {
 
     expect(res.status).toHaveBeenCalledWith(500);
     expect(res.json).toHaveBeenCalledWith({
-      message: 'Error creating post',
+      message: 'Error deleting post',
     });
   });
 });
