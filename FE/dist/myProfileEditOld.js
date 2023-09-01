@@ -8,37 +8,31 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 import { BASE_URL } from "./constants.js";
-import dateTimeFormatter from "./dateTimeFormatter.js";
 import trimCookie from "./trimCookie.js";
 const api_url = BASE_URL + '/api/v1/posts';
-export default function mainFetch() {
+export default function MyProfileEditOld(postTitle, postBody, postId) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             const token = trimCookie().token;
             const response = yield fetch(api_url, {
-                method: 'GET',
+                method: 'PATCH',
+                mode: 'cors',
                 headers: {
+                    'Content-Type': 'application/json',
                     'Authorization': `Bearer ${token.trim()}` // Trim any leading/trailing spaces
-                }
+                },
+                body: JSON.stringify({
+                    postTitle: postTitle,
+                    postBody: postBody,
+                    postId: postId
+                }),
             });
             const data = yield response.json();
-            if (data.data.length !== 0) {
-                const formOutput = document.getElementById("rowOutput");
-                for (let i = 0; i < data.data.length; i++) {
-                    formOutput.innerHTML +=
-                        `<div class="col-md-12 border border-primary mb-5 p-5">
-                    <h1>${data.data[i].post_title}</h1>
-                    <h5>Written by: ${data.data[i].user_name}</h5>
-                        <p>${data.data[i].post_content}</p>
-                        <span class="badge bg-primary">Posted ${dateTimeFormatter(data.data[i].createdAt)}</span>
-                        <span class="badge bg-primary">Last Updated ${dateTimeFormatter(data.data[i].updatedAt)}</span></br>
-                        <button type="button" class="btn btn-danger m-2 delete-button" data-post-id=${data.data[i].post_id}>Delete</button>
-                    </div>`;
-                }
-            }
+            alert(data.message);
+            window.location.href = "/main.html";
         }
         catch (error) {
-            alert(error);
+            alert('DB error occurred');
         }
     });
 }

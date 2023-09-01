@@ -65,15 +65,18 @@
                             <form class="form-inline" action="#" id="formCreatePost">
                                 <div class="mb-3">
                                     <label for="postTitle" class="form-label">Post Title</label>
-                                    <textarea class="form-control" name="postTitle" id="postTitle" cols="30" rows="3" maxlength="255"
-                                        aria-describedby="helpId" placeholder="" required></textarea>
-                                    <small id="helpId" class="form-text text-muted">Title of your blog post as long as it's <b><span id="remainingTitle">255</span></b> character(s)</small>
+                                    <textarea class="form-control" name="postTitle" id="postTitle" cols="30" rows="3"
+                                        maxlength="255" aria-describedby="helpId" placeholder="" required></textarea>
+                                    <small id="helpId" class="form-text text-muted">Title of your blog post as long as
+                                        it's <b><span id="remainingTitle">255</span></b> character(s)</small>
                                 </div>
                                 <div class="mb-3">
                                     <label for="postBody" class="form-label">Post Body</label>
-                                    <textarea class="form-control" name="postBody" id="postBody" cols="30" rows="10" maxlength="511"
-                                        aria-describedby="helpId" placeholder="" required></textarea>
-                                    <small id="helpId" class="form-text text-muted">Write whatever you want, but you only have <b><span id="remainingCharacters">511</span></b> character(s) left</small>
+                                    <textarea class="form-control" name="postBody" id="postBody" cols="30" rows="10"
+                                        maxlength="511" aria-describedby="helpId" placeholder="" required></textarea>
+                                    <small id="helpId" class="form-text text-muted">Write whatever you want, but you
+                                        only have <b><span id="remainingCharacters">511</span></b> character(s)
+                                        left</small>
                                 </div>
                                 <button type="submit" class="btn btn-primary" id="btnCreatePost">Submit</button>
                             </form>
@@ -87,6 +90,33 @@
         </div>
     </section>
     <!--Post Modal End-->
+
+    <!--Fullpage Modal-->
+    <section id="fullpageModal">
+        <div class="modal fade" id="modalFullpage" tabindex="-1" aria-labelledby="modalPostTitle" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="modalPostTitle"></h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <div class="container">
+                            <div class="mb-3">
+                                <p id="fullPostTitle">Post Title</p>
+                            </div>
+                            <div class="mb-3">
+                                <p id="fullPostBody">Post Body</p>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </section>
+    <!--Fullpage Modal End-->
 
     <!--Main layout-->
     <main class="my-5">

@@ -20,6 +20,7 @@ export default async function mainPost(postTitle: string, postBody: string) {
         });
             const data = await response.json();
             alert(data.message);
+            window.location.href = "/main.html";
         } catch (error) {
             alert('DB error occurred'); 
         }

@@ -23,26 +23,15 @@ export default async function myProfile() {
             const formOutput = document.getElementById("rowOutput") as HTMLElement;
             for (let i = 0; i < data.data.length; i++) {
                 formOutput.innerHTML += 
-                `<div class="col-lg-4 col-md-6 mb-4">
-                    <div class="card"id="post-${data.data[i].post_id}">
-                        <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
-                            <img src="https://mdbootstrap.com/img/new/standard/nature/184.jpg" class="img-fluid" />
-                            <a href="#!">
-                                <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
-                            </a>
-                        </div>
-                        <div class="card-body">
-                            <h5 class="card-title">${data.data[i].post_title}</h5>
-                            <h6 class="card-subtitle">by: ${data.data[i].user_name}</h6>
-                            <p class="card-text">
-                                <span>Created at: ${dateTimeFormatter(data.data[i].createdAt)}</span><br/>
-                                <span>Updated at: ${dateTimeFormatter(data.data[i].updatedAt)}</span><br/>
-                                <button type="button" class="btn btn-info m-2 edit-button" data-post-id=${data.data[i].post_id}>Edit</button>
-                                <button type="button" class="btn btn-danger m-2 delete-button" data-post-id=${data.data[i].post_id}>Delete</button>
-                            </p>
-                        </div>
-                    </div>
-                </div>`
+                `<div class="col-md-12 border border-primary mb-5 p-5">
+                    <h1>${data.data[i].post_title}</h1>
+                    <h5>Written by: ${data.data[i].user_name}</h5>
+                        <p>${data.data[i].post_content}</p>
+                        <span class="badge bg-primary">Posted ${dateTimeFormatter(data.data[i].createdAt)}</span>
+                        <span class="badge bg-primary">Last Updated ${dateTimeFormatter(data.data[i].updatedAt)}</span><br/>
+                        <button type="button" class="btn btn-primary m-2" onClick="myProfileEditHTML('${data.data[i].post_id}')">Edit post</button>
+                        <button type="button" class="btn btn-danger m-2 delete-button" data-post-id=${data.data[i].post_id}>Delete</button>
+                    </div>`
             }
         }
     } catch (error) {

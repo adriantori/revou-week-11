@@ -28,6 +28,7 @@ export default function mainPost(postTitle, postBody) {
             });
             const data = yield response.json();
             alert(data.message);
+            window.location.href = "/main.html";
         }
         catch (error) {
             alert('DB error occurred');

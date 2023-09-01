@@ -32,3 +32,19 @@ addPost === null || addPost === void 0 ? void 0 : addPost.addEventListener("clic
         alert("Input can't be blank");
     }
 });
+// Wait for the document to be fully loaded
+document.addEventListener("DOMContentLoaded", function () {
+    // Assuming you have postTitle and postBody variables with the values you want to display
+    console.log(document.getElementById('fullPostTitle').value);
+    // Listen for the modal's "show.bs.modal" event
+    const modal = document.getElementById("modalFullpage");
+    modal === null || modal === void 0 ? void 0 : modal.addEventListener("show.bs.modal", function (event) {
+        const fullPostTitle = document.getElementById("fullPostTitle");
+        const fullPostBody = document.getElementById("fullPostBody");
+        const modalTrigger = event.target; // Use a type assertion to specify that event.target is an HTMLElement
+        const postTitle = modalTrigger.getAttribute("data-post-title");
+        // Update the content of the <p> elements with your variables
+        fullPostTitle.textContent = postTitle || "test"; // Use the || operator to provide a default value if postTitle is null or undefined
+        fullPostBody.textContent = "postBody";
+    });
+});
