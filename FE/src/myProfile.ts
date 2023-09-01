@@ -41,7 +41,7 @@ formEditPost?.addEventListener("submit", (event) => {
     if(postTitle.length > 1 && postBody.length > 1 && postId){
         MyProfileEdit(postTitle, postBody, parseInt(postId));
     }else{
-        alert("Input can't be blank")
+        alert("Input can't be blanks")
     }
 })
 

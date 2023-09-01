@@ -38,7 +38,7 @@ formEditPost === null || formEditPost === void 0 ? void 0 : formEditPost.addEven
         MyProfileEdit(postTitle, postBody, parseInt(postId));
     }
     else {
-        alert("Input can't be blank");
+        alert("Input can't be blanks");
     }
 });
 // Attach event listener to dynamically generated Delete buttons
